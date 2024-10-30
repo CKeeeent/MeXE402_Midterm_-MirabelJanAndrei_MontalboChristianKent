@@ -781,4 +781,569 @@ y
       <td>4</td>
       <td>3</td>
       <td>4</td>
-      <td>1</t
+      <td>1</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>17</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>5</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>15</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>15</td>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>16</td>
+      <td>3</td>
+      <td>3</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>3</td>
+      <td>2</td>
+      <td>1</td>
+      <td>...</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>644</th>
+      <td>19</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>5</td>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>645</th>
+      <td>18</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>4</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>646</th>
+      <td>18</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>647</th>
+      <td>17</td>
+      <td>3</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>0</td>
+      <td>2</td>
+      <td>4</td>
+      <td>5</td>
+      <td>3</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>648</th>
+      <td>18</td>
+      <td>3</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>0</td>
+      <td>4</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3</td>
+      <td>...</td>
+      <td>True</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>False</td>
+      <td>True</td>
+      <td>True</td>
+      <td>False</td>
+    </tr>
+  </tbody>
+</table>
+<p>649 rows × 41 columns</p>
+</div>
+
+> *This shows the output of the dataset.*
+
+| Index | G3  |
+|-------|-----|
+| 0     | 11  |
+| 1     | 11  |
+| 2     | 12  |
+| 3     | 14  |
+| 4     | 13  |
+| ...   | ... |
+| 644   | 10  |
+| 645   | 16  |
+| 646   | 9   |
+| 647   | 10  |
+| 648   | 11  |
+### Creating the Training Set and the Test Set
+```python
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+```
+> *Splitting the data (80% training, 20% testing)*
+
+### Normalize data
+```python
+scaler = StandardScaler()
+
+# Fit and transform on training data and transform on testing data
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+```
+> *Normalizing the dataset since it has features that have different units and scales.*
+
+```python
+X_train_scaled
+
+array([[ 0.98793212, -0.43741772, -0.25633653, ...,  0.35125009,
+         0.56919205, -0.75993921],
+       [-0.62953403,  1.35013974,  1.59142265, ...,  0.35125009,
+         0.56919205,  1.31589473],
+       [ 0.98793212,  0.45636101, -0.25633653, ...,  0.35125009,
+        -1.75687625, -0.75993921],
+       ...,
+       [-0.62953403,  1.35013974,  1.59142265, ...,  0.35125009,
+         0.56919205, -0.75993921],
+       [-1.4382671 , -1.33119645, -1.18021613, ...,  0.35125009,
+         0.56919205, -0.75993921],
+       [-1.4382671 ,  1.35013974,  1.59142265, ...,  0.35125009,
+         0.56919205, -0.75993921]])
+```
+> *Displaying the **normalized version of the input training dataset** (`X_train`)*
+
+```python
+X_test_scaled
+
+array([[ 0.98793212,  1.35013974,  1.59142265, ...,  0.35125009,
+         0.56919205, -0.75993921],
+       [-0.62953403,  0.45636101, -1.18021613, ...,  0.35125009,
+         0.56919205, -0.75993921],
+       [ 0.98793212,  1.35013974,  1.59142265, ...,  0.35125009,
+         0.56919205, -0.75993921],
+       ...,
+       [-0.62953403,  0.45636101,  1.59142265, ...,  0.35125009,
+        -1.75687625, -0.75993921],
+       [ 0.17919904,  1.35013974,  0.66754306, ...,  0.35125009,
+         0.56919205,  1.31589473],
+       [ 0.98793212, -0.43741772, -0.25633653, ...,  0.35125009,
+         0.56919205,  1.31589473]])
+```
+
+> *Displaying the **normalized version of the input testing dataset** (`X_test`)*
+
+```python
+y_train
+
+332    18
+29     12
+302    12
+286    13
+554    10
+       ..
+71     10
+106    10
+270    15
+435    10
+102    12
+Name: G3
+```
+> *Displaying the **output training dataset** (`y_train`)*
+
+```python
+y_test
+
+636    19
+220    12
+594    18
+429    11
+72     11
+       ..
+514     7
+374    17
+444    11
+244    12
+601    10
+Name: G3
+```
+> *Displaying the **output testing dataset** (`y_test`)*
+
+### Building the Model
+```python
+# Initialize the linear regression model
+model = LinearRegression()
+```
+### Training the Model
+```python
+# Train the model on the scaled training data
+model.fit(X_train_scaled, y_train)
+```
+### Inference
+```python
+# Predict the target values for the test data
+y_pred = model.predict(X_test_scaled)
+y_pred
+```
+> *Displaying the **predicted target values***
+```python
+array([18.40265613, 11.82720849, 18.56288575, 10.80969554, 11.74323992,
+       16.52050538, 17.68642688,  9.20547185, 10.99263829, 10.52990179,
+       18.68507485, 12.01170944, 12.51636949,  9.25637135, 10.92001471,
+       13.89458333, 11.70284959,  7.75525634, 15.58827334, 14.91646892,
+       15.48017743, 13.6711844 , 14.51763488, 12.14228197, 14.73663429,
+       12.89956801,  8.386953  , 11.70486551, 11.30482308, 15.39946248,
+       15.91856938, 13.007757  ,  7.94478881,  6.55967433, 17.82710293,
+       15.76901234, 14.0460542 , 15.54431689, 13.26315587, 11.43204987,
+       13.88933129, 11.05736646,  8.62073014, 11.85157458, 13.27989252,
+       13.13368834, 17.89357593, 11.39508466, 12.06570598, 11.36425844,
+       11.00499054, 11.16234464, 14.32597736,  9.8592132 , 10.79193041,
+       18.01161782,  9.10909354, 10.35558102, 11.4316307 , 10.04193231,
+        8.21272376, 11.30013557, 16.13851443, 12.36903381, 15.51853105,
+       16.17553342,  9.9042642 ,  7.94076538,  9.50371636,  9.57917018,
+       16.13197401, 15.88862171, 12.14110277, 16.71819814, 13.80215043,
+       13.44212228, 12.85545806, 15.69804212, 12.46102076, 13.45123399,
+       11.78788661, 11.6070244 , 18.07741723,  7.96914521, 12.35474266,
+       18.76647297, 12.20141506,  8.79024424, 15.07839187, 12.5143866 ,
+       15.58803867,  9.12198992, 11.73285092, 19.13536128,  8.87135955,
+       14.71528738, 15.72214431,  9.63844169, 12.83536004,  9.82708007,
+       12.02812807, 11.18463076, 11.55753676, 11.96583788, 12.96584937,
+        9.81076629, 10.8074428 , 11.78069743,  9.02290603, 12.98379529,
+       13.70886845,  8.33139453, 11.66278748, 10.61821796,  5.51091075,
+        9.43945419, 11.10483796, 16.21379308, 15.73812692,  9.07104242,
+       13.87280325,  0.52155643, 15.90638919, 14.38922905, 11.97730024,
+        7.05447789, 18.58542536,  9.41108376, 13.2076544 ,  8.63315957])
+```
+> *Comparing the predicted values to the **output testing dataset** (y_test)*
+```python
+636    19
+220    12
+594    18
+429    11
+72     11
+       ..
+514     7
+374    17
+444    11
+244    12
+601    10
+```
+
+## Evaluating the Model:
+### Mean Squared Error
+```python
+# Calculate Mean Squared Error (MSE)
+mse = mean_squared_error(y_test, y_pred)
+print(f"Mean Squared Error (MSE): {mse:.2f}")
+```
+> *Calculated **Mean Squared Error***
+```python
+Mean Squared Error (MSE): 1.48
+```
+### Mean Absolute Error
+```python
+# Calculate Mean Absolute Error (MAE)
+mae = mean_absolute_error(y_test, y_pred)
+print(f"Mean Absolute Error (MAE): {mae:.2f}")
+```
+> *Calculated **Mean Absolute Error***
+```python
+Mean Absolute Error (MAE): 0.77
+```
+
+### R-squared
+```python
+# Calculate R-squared (r2)
+r2 = r2_score(y_test, y_pred)
+print(f"R-squared (R²): {r2:.2f}")
+```
+> *Calculated **R-squared***
+```python
+R-squared (R²): 0.85
+```
+## Interpretation:
+```python
+# Coefficients of the model
+coefficients = pd.DataFrame(model.coef_, X.columns, columns=['Coefficient'])
+# Print the coefficients
+coefficients.head(15)
+```
+> *A positive coefficient means that as the feature increases, the target variable increases.*
+
+> *A negative coefficient means that as the feature increases, the target variable decreases.*
+
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Coefficient</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>age</th>
+      <td>0.007372</td>
+    </tr>
+    <tr>
+      <th>Medu</th>
+      <td>-0.166254</td>
+    </tr>
+    <tr>
+      <th>Fedu</th>
+      <td>0.041540</td>
+    </tr>
+    <tr>
+      <th>traveltime</th>
+      <td>0.083662</td>
+    </tr>
+    <tr>
+      <th>studytime</th>
+      <td>0.050082</td>
+    </tr>
+    <tr>
+      <th>failures</th>
+      <td>-0.124303</td>
+    </tr>
+    <tr>
+      <th>famrel</th>
+      <td>-0.040140</td>
+    </tr>
+    <tr>
+      <th>freetime</th>
+      <td>-0.113908</td>
+    </tr>
+    <tr>
+      <th>goout</th>
+      <td>0.020842</td>
+    </tr>
+    <tr>
+      <th>Dalc</th>
+      <td>-0.067851</td>
+    </tr>
+    <tr>
+      <th>Walc</th>
+      <td>0.035156</td>
+    </tr>
+    <tr>
+      <th>health</th>
+      <td>-0.079442</td>
+    </tr>
+    <tr>
+      <th>absences</th>
+      <td>0.053971</td>
+    </tr>
+    <tr>
+      <th>G1</th>
+      <td>0.460262</td>
+    </tr>
+    <tr>
+      <th>G2</th>
+      <td>2.471735</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+##  Comparison of the actual vs. predicted values from the machine learning model.
+```python
+# Create the scatter plot
+plt.figure(figsize=(8, 6))
+plt.scatter(y_test, y_pred, alpha=0.6, color='blue', edgecolors='black', s=70)  # Add alpha for transparency
+
+# Add a diagonal line representing perfect predictions
+min_val = min(min(y_test), min(y_pred))
+max_val = max(max(y_test), max(y_pred))
+plt.plot([min_val, max_val], [min_val, max_val], color='red', linestyle='--', linewidth=2, label='Perfect Prediction')
+
+# Set labels and title
+plt.xlabel('Actual Values', fontsize=12)
+plt.ylabel('Predicted Values', fontsize=12)
+plt.title('Actual vs Predicted', fontsize=14)
+
+# Add grid and legend
+plt.grid(True, linestyle='--', alpha=0.5)
+plt.legend()
+
+# Show the plot
+plt.show()
+```
+> *The plot presents the evaluation of the performance of a regression model by showing how closely the model's predictions align with the true (actual) values.*
+
+![image](https://github.com/user-attachments/assets/bc82c887-b029-4a1d-811c-8b33fb84630f)
