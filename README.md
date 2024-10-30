@@ -1346,4 +1346,5 @@ plt.show()
 ```
 > *The plot presents the evaluation of the performance of a regression model by showing how closely the model's predictions align with the true (actual) values.*
 
-![image](https://github.com/user-attachments/assets/bc82c887-b029-4a1d-811c-8b33fb84630f)
+![image](https://github.com/user-attachments/assets/c9437e6c-4205-4a47-a896-d7daf151d043)
+
