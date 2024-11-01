@@ -1618,8 +1618,13 @@ plt.show()
 > *This plot show age Distribution in the Dataset and It has been shown that the highest percentage of people suffering from heart disease are those between the ages of 50 and 60 years.*
 ![image](https://github.com/user-attachments/assets/3a96edd6-38a3-4466-a657-775d7316889e)
 
-
-
+```python
+g=sns.FacetGrid(data , hue = "sex" , aspect =4)
+g.map(sns.kdeplot,'trestbps',shade=True)
+plt.legend(labels=['Male','Female'])
+```
+> *This plot show comparing between Resting Blood Pessure as per sex coulmns so the female is higher ( which is orange color) and male lower than (which is blue color).*
+![image](https://github.com/user-attachments/assets/eacfcc01-0943-4a60-931f-7e46620e4ba7)
 
 
 ## 2. Handling Missing Values
@@ -1896,45 +1901,20 @@ X = scaler.transform(X)
 
 ## 6. Building and Training the Model
 - After preprocessing the data, we moved on to building and training the model.
-
-![image](https://github.com/user-attachments/assets/edc3c966-c760-40de-87dc-0544f9ade71e)
+```python
+#Model Training
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+model.fit(X_train, Y_train)
+```
 
 ## 7. Making Predictions
-- Once the model was trained, we used it to make predictions on the test set. This step is crucial for assessing how well our model generalizes to new data. We also demonstrated how to predict the outcome for a single data point to illustrate the model's practical application.
-![image](https://github.com/user-attachments/assets/17a5865e-6db6-4350-9de5-bdda4d15eb66)
+- Once the model was trained, we used it to make predictions on the test set. This step is crucial for assessing how well our model generalizes to new data. 
+```python
+# Predict the target values for the test data
+y_pred = model.predict(X_test_scaled)
+y_pred
+```
 > *These correlations provide insights into which factors are most influential in predicting heart disease and can guide the development of predictive models.*
 
--age:
-
-Positively correlated with trestbps (0.283), chol (0.207), and ca (0.302), indicating that older age is associated with higher resting blood pressure, higher cholesterol, and more major vessels colored by fluoroscopy. Negatively correlated with thalach (-0.395), indicating that older age is associated with lower maximum heart rate achieved. Negatively correlated with target (-0.221), indicating that older age is associated with a lower likelihood of having heart disease (though this might be counterintuitive and could indicate a complex relationship or influence of other factors).
-
--sex:
-
-Negatively correlated with chol (-0.196) and target (-0.284), indicating that females are less likely to have higher cholesterol and heart disease compared to males. cp (chest pain type):
-
-Positively correlated with thalach (0.293) and target (0.432), indicating that certain types of chest pain are associated with higher maximum heart rate achieved and a higher likelihood of heart disease. Negatively correlated with exang (-0.393), indicating that certain types of chest pain are less likely to be associated with exercise-induced angina.
-
--trestbps:
-
-Positively correlated with oldpeak (0.195), indicating higher resting blood pressure is associated with higher ST depression induced by exercise. Negatively correlated with target (-0.146), indicating higher resting blood pressure is associated with a lower likelihood of heart disease (again, this could indicate a complex relationship or the influence of other factors).
-
--thalach:
-
-Positively correlated with cp (0.293) and target (0.420), indicating higher maximum heart rate achieved is associated with certain types of chest pain and a higher likelihood of heart disease. Negatively correlated with age (-0.395), exang (-0.377), and oldpeak (-0.342), indicating that lower maximum heart rate achieved is associated with older age, exercise-induced angina, and higher ST depression induced by exercise.
-
--exang:
-
-Positively correlated with oldpeak (0.287), indicating that exercise-induced angina is associated with higher ST depression induced by exercise. Negatively correlated with cp (-0.393), thalach (-0.377), and target (-0.436), indicating that exercise-induced angina is associated with certain types of chest pain, lower maximum heart rate achieved, and a lower likelihood of heart disease.
-
--oldpeak:
-
-Positively correlated with exang (0.287) and ca (0.237), indicating higher ST depression induced by exercise is associated with exercise-induced angina and more major vessels colored by fluoroscopy. Negatively correlated with thalach (-0.342), slope (-0.576), and target (-0.429), indicating that higher ST depression induced by exercise is associated with lower maximum heart rate achieved, less favorable slope of the peak exercise ST segment, and a lower likelihood of heart disease.
-
--ca:
-
-Positively correlated with age (0.302), exang (0.125), and oldpeak (0.237), indicating more major vessels colored by fluoroscopy are associated with older age, exercise-induced angina, and higher ST depression induced by exercise. Negatively correlated with thalach (-0.228) and target (-0.409), indicating that more major vessels colored by fluoroscopy are associated with lower maximum heart rate achieved and a lower likelihood of heart disease.
-
--thal:
-
-Positively correlated with sex (0.211), indicating a gender difference in thalassemia. Negatively correlated with target (-0.343), indicating that certain thalassemia conditions are associated with a lower likelihood of heart disease.
 
