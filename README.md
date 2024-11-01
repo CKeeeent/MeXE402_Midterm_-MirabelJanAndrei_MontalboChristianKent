@@ -1937,6 +1937,110 @@ test_data_accuracy
 ```
 > *Test Data Accuracy Result: 0.8049*
 
-> *These correlations provide insights into which factors are most influential in predicting heart disease and can guide the development of predictive models.*
+### 8.3 Confusion Matrices
+- Utilize the ```confusion_matrix``` function from ```sklearn.metrics``` to compute and plot confusion matrices for both the training and test predictions. The true labels (Y_train and Y_test) and predicted labels are used as inputs.
+```python
+# Computing confusion matrix for training data
+train_confusion_matrix = confusion_matrix(Y_train, X_train_prediction)
+
+# Computing confusion matrix for test data
+test_confusion_matrix = confusion_matrix(Y_test, X_test_prediction)
+# Plotting confusion matrix for training data
+plt.figure(figsize=(8, 4))
+ConfusionMatrixDisplay(train_confusion_matrix).plot(cmap="Blues")
+plt.title("Confusion Matrix for Training Data")
+plt.show()
+
+# Plotting confusion matrix for test data
+plt.figure(figsize=(8, 4))
+ConfusionMatrixDisplay(test_confusion_matrix).plot(cmap="Blues")
+plt.title("Confusion Matrix for Test Data")
+plt.show()
+```
+- Training Confusion Matrix Plot:
+
+![image](https://github.com/user-attachments/assets/cc1a9c4e-05c5-4ff4-9d54-bfd7bbab5d0b)
+
+> *This plot visualizes the confusion matrix for the training dataset, highlighting the number of true positives, false positives, true negatives, and false negatives.*
+
+- Test Confusion Matrix Plot:
+
+![image](https://github.com/user-attachments/assets/b3dc0c26-a983-41c2-ad44-2678cda3566f)
+
+> *This plot visualizes the confusion matrix for the test dataset, demonstrating the model's ability to predict heart disease on unseen data.*
+
+- True Positives TP(1): The number of instances where the model correctly predicted the presence of heart disease. A high TP count indicates that the model effectively identifies patients with heart disease.
+
+- True Negatives TN(0): The count of instances where the model correctly predicted the absence of heart disease. A high TN value suggests the model is reliable in identifying healthy individuals.
+
+- False Positives FP(1): The number of instances where the model incorrectly predicted heart disease when it was not present. A high FP count may suggest that the model is overly sensitive, potentially leading to unnecessary anxiety and further testing for patients.
+
+- False Negatives FN(0): The count of instances where the model failed to identify heart disease when it was present. A high FN count is particularly concerning in medical contexts, as it means patients with heart disease are not receiving the necessary care or intervention.
+
+### 8.4 Correlation Heatmap
+- The correlation matrix was computed using the Pandas .corr() method on the dataset.
+```python
+correlation_matrix=data.corr()
+print(correlation_matrix)
+```
+> *Displaying the correlation matrix.*
+
+|             | age        | sex        | cp         | trestbps   | chol       | fbs        | restecg    | thalach    | exang      | oldpeak    | slope      | ca         | thal       | target     |
+|-------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|------------|
+| **age**     | 1.000000   | -0.103240  | -0.071966  | 0.271121   | 0.219823   | 0.121243   | -0.132696  | -0.390227  | 0.088163   | 0.208137   | -0.169105  | 0.271551   | 0.072297   | -0.229324  |
+| **sex**     | -0.103240  | 1.000000   | -0.041119  | -0.078974  | -0.198258  | 0.027200   | -0.055117  | -0.049365  | 0.139157   | 0.084687   | -0.026666  | 0.111729   | 0.198424   | -0.279501  |
+| **cp**      | -0.071966  | -0.041119  | 1.000000   | 0.038177   | -0.081641  | 0.079294   | 0.043581   | 0.306839   | -0.401513  | -0.174733  | 0.131633   | -0.176206  | -0.163341  | 0.434854   |
+| **trestbps**| 0.271121   | -0.078974  | 0.038177   | 1.000000   | 0.127977   | 0.181767   | -0.123794  | -0.039264  | 0.061197   | 0.187434   | -0.120445  | 0.104554   | 0.059276   | -0.138772  |
+| **chol**    | 0.219823   | -0.198258  | -0.081641  | 0.127977   | 1.000000   | 0.026917   | -0.147410  | -0.021772  | 0.067382   | 0.064880   | -0.014248  | 0.074259   | 0.100244   | -0.099966  |
+| **fbs**     | 0.121243   | 0.027200   | 0.079294   | 0.181767   | 0.026917   | 1.000000   | -0.104051  | -0.008866  | 0.049261   | 0.010859   | -0.061902  | 0.137156   | -0.042177  | -0.041164  |
+| **restecg** | -0.132696  | -0.055117  | 0.043581   | -0.123794  | -0.147410  | -0.104051  | 1.000000   | 0.048411   | -0.065606  | -0.050114  | 0.086086   | -0.078072  | -0.020504  | 0.134468   |
+| **thalach** | -0.390227  | -0.049365  | 0.306839   | -0.039264  | -0.021772  | -0.008866  | 0.048411   | 1.000000   | -0.380281  | -0.349796  | 0.395308   | -0.207888  | -0.098068  | 0.422895   |
+| **exang**   | 0.088163   | 0.139157   | -0.401513  | 0.061197   | 0.067382   | 0.049261   | -0.065606  | -0.380281  | 1.000000   | 0.310844   | -0.267335  | 0.107849   | 0.197201   | -0.438029  |
+| **oldpeak** | 0.208137   | 0.084687   | -0.174733  | 0.187434   | 0.064880   | 0.010859   | -0.050114  | -0.349796  | 0.310844   | 1.000000   | -0.575189  | 0.221816   | 0.202672   | -0.438441  |
+| **slope**    | -0.169105  | -0.026666  | 0.131633   | -0.120445  | -0.014248  | -0.061902  | 0.086086   | 0.395308   | -0.267335  | -0.575189  | 1.000000   | -0.073440  | -0.094090  | 0.345512   |
+| **ca**      | 0.271551   | 0.111729   | -0.176206  | 0.104554   | 0.074259   | 0.137156   | -0.078072  | -0.207888  | 0.107849   | 0.221816   | -0.073440  | 1.000000   | 0.149014   | -0.382085  |
+| **thal**    | 0.072297   | 0.198424   | -0.163341  | 0.059276   | 0.100244   | -0.042177  | -0.020504  | -0.098068  | 0.197201   | 0.202672   | -0.094090  | 0.149014   | 1.000000   | -0.337838  |
+| **target**   | -0.229324  | -0.279501  | 0.434854   | -0.138772  | -0.099966  | -0.041164  | 0.134468   | 0.422895   | -0.438029  | -0.438441  | 0.345512   | -0.382085  | -0.337838  | 1.000000   |
+
+- Plotting the Correlation Heatmap.
+```python
+plt.figure(figsize=(17, 6))
+sns.heatmap(correlation_matrix, annot=True)
+plt.title('Correlation Heatmap')
+plt.show()
+```
+![image](https://github.com/user-attachments/assets/474e162c-e99a-49cd-84f3-ec8ba1db4034)
+
+> *The heatmap allows for quick identification of highly correlated features. Strong positive correlations suggest that as one feature increases, the other tends to also increase, while strong negative correlations indicate that as one feature increases, the other tends to decrease.*
 
 
+
+## 9. Results
+- Accuracy scores and confusion matrices were used to evaluate the heart disease prediction model's performance on both the training and test datasets.
+  * Training Data Accuracy: The accuracy score on the training dataset was 85.85%, suggesting that the model performed well with the data on which it was trained.
+  * Test Data Accuracy: The accuracy score on the test dataset was 80.49%, indicating that the model performs rather well when applied to unseen data.
+
+- Confusion Matrix for Training Data
+
+|             | Predicted Positive (1) | Predicted Negative (0) |
+|-------------|-------------------------|-------------------------|
+| **Actual Positive (1)** | 326                     | 73                      |
+| **Actual Negative (0)** | 43                      | 378                     |
+
+  * True Positives (TP): 326 instances of heart disease correctly identified.
+  * False Negatives (FN): 73 instances of heart disease incorrectly identified as not having the disease.
+  * False Positives (FP): 43 instances incorrectly identified as having heart disease.
+  * True Negatives (TN): 378 instances correctly identified as not having heart disease.
+
+
+-  Confusion Matrix for Testing Data
+
+|             | Predicted Positive (1) | Predicted Negative (0) |
+|-------------|-------------------------|-------------------------|
+| **Actual Positive (1)** | 73                      | 27                      |
+| **Actual Negative (0)** | 13                      | 92                      |
+
+  * True Positives (TP): 73 instances of heart disease correctly identified.
+  * False Negatives (FN): 27 instances of heart disease incorrectly identified as not having the disease.
+  * False Positives (FP): 13 instances incorrectly identified as having heart disease.
+  * True Negatives (TN): 92 instances correctly identified as not having heart disease.
