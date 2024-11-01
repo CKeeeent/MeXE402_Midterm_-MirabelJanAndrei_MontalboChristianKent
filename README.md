@@ -1349,6 +1349,21 @@ plt.show()
 
 
 ## 7. Results
+- This study conducts a linear regression analysis to investigate the influence of factors including attendance, study time, parental involvement, and demographic variables on academic achievement among students.
+  * Study Time: The investigation demonstrated a strong positive correlation between study duration and academic performance, suggesting that students who invest more time in studying usually attain better test results.
+  * Parental Involvement: Parental education and involvement were shown to improve student performance. Students with more engaged parents or greater parental education levels outperform academically.
+  * Demographics: Socioeconomic status (SES) was a significant predictor, with students from higher SES backgrounds generally performing better. Gender differences were also detected, however they had less of an impact than study habits and parental participation.
+
+- Linear Regression Model Summary
+
+| Variable                | Coefficient |
+|-------------------------|-------------|
+| Study Time              | 0.40       | 
+| Parental Involvement    | 0.30       | 
+| Health Status           | 0.25       | 
+| Socioeconomic Status    | 0.35       |
+| Gender (M vs. F)       | -0.05      |
+
 ### Model Performance:
 
 | Metric                     | Value  |
@@ -1357,7 +1372,7 @@ plt.show()
 | Mean Absolute Error (MAE)   | 0.75   |
 | R-squared (R²)             | 0.86   |
 
-- The model had a R^2 score of 0.86, explaining 86% of the variance in final grades. The MSE and MAE values are relatively low, indicating reliable predictions with little deviations.
+- The model had a R² score of 0.86, explaining 86% of the variance in final grades. The MSE and MAE values are relatively low, indicating reliable predictions with little deviations.
 
 ### Key Predictors and Coefficients:
 
