@@ -672,7 +672,8 @@ plt.ylabel("Data Points", fontsize=12)
 plt.grid(False)
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/fa749839-9c29-493e-acf8-1689d9817c78)
+![image](https://github.com/user-attachments/assets/0dea60d6-eb41-4f5a-b9d2-2f022fa24502)
+
 > *A heatmap of Z-scores was created to visually inspect potential outliers.*
 ### 3.3.2 Outliers per column
 ```python
@@ -1344,7 +1345,37 @@ plt.show()
 ```
 > *The plot presents the evaluation of the performance of a regression model by showing how closely the model's predictions align with the true (actual) values.*
 
-![output](https://github.com/user-attachments/assets/9a3a364e-7c46-4f8b-9067-d0cc5f722303)
+![image](https://github.com/user-attachments/assets/796c4dd9-f6c8-4b17-9c27-8bb70abd7ba2)
+
+
+## 7. Results
+### Model Performance:
+
+| Metric                     | Value  |
+|----------------------------|--------|
+| Mean Squared Error (MSE)   | 1.02   |
+| Mean Absolute Error (MAE)   | 0.75   |
+| R-squared (R²)             | 0.86   |
+
+- The model had a R^2 score of 0.86, explaining 86% of the variance in final grades. The MSE and MAE values are relatively low, indicating reliable predictions with little deviations.
+
+### Key Predictors and Coefficients:
+
+| Feature                | Coefficient | Interpretation                                   |
+|-----------------------|-------------|-------------------------------------------------|
+| G2                    | 2.66       | Strong positive impact on G3                    |
+| G1                    | 0.35       | Moderate positive impact on G3                   |
+| traveltime            | 0.11       | Minor positive impact on G3                      |
+| Mjob_services         | 0.09       | Service job positively linked to G3              |
+| absences              | 0.07       | Small positive correlation with G3               |
+
+- Previous grades (G1 and G2) exhibit the most significant positive correlation with the final grade (G3), followed by travel time and particular parental occupations (e.g., service and health sectors), potentially indicating socio-economic or motivational factors.
+
+### Visualization:
+- The scatter plot presented below illustrates a strong correlation between actual and predicted values, as evidenced by their proximity to the red "Perfect Prediction" line, thereby affirming the model's reliability.
+
+![image](https://github.com/user-attachments/assets/39197a45-868a-494a-96eb-b22cb8eb053f)
+
 
 
 # Logistic Regression Analysis: *Hear Disease Dataset.*
