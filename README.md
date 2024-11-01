@@ -1915,6 +1915,28 @@ model.fit(X_train, Y_train)
 y_pred = model.predict(X_test_scaled)
 y_pred
 ```
+## 8. Model Evaluation
+- To assess the model’s performance, we calculate the accuracy score on both the training and test datasets. This approach helps us understand how well the model fits the training data and generalizes to new data.
+### 8.1 Training Data Accuracy
+```python
+#Finding the accuracy score on training dataset
+from sklearn.metrics import accuracy_score
+X_train_prediction = model.predict(X_train)
+train_data_accuracy = accuracy_score(X_train_prediction, Y_train)
+train_data_accuracy
+```
+> *Training Data Accuracy Result: 0.8585*
+
+### 8.2 Testing Data Accuracy
+```python
+#Finding the accuracy score on test dataset
+from sklearn.metrics import accuracy_score
+X_test_prediction = model.predict(X_test)
+test_data_accuracy = accuracy_score(X_test_prediction, Y_test)
+test_data_accuracy
+```
+> *Test Data Accuracy Result: 0.8049*
+
 > *These correlations provide insights into which factors are most influential in predicting heart disease and can guide the development of predictive models.*
 
 
