@@ -30,7 +30,7 @@ The objective of this project is to:
 
 
 # Linear Regression Analysis: *Student achievement in secondary education of two Portuguese schools.*
-## Importing the required libraries, modules, and functions.
+## 1. Importing the required libraries, modules, and functions.
 ```python
 import pandas as pd
 import numpy as np
@@ -41,7 +41,8 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
 ```
-## Importing the dataset.
+## 2. Loading and Inspecting the Dataset
+- This step provides a preview of the data, helping identify the columns and understand the general structure.
 ```python
 # Load the dataset
 sdata = pd.read_csv('student-por.csv')
@@ -324,8 +325,9 @@ sdata.head(10)
 </div>
 
 > *The dependent variable is the column "G3".*
-## Data Preprocessing:
-### Handle Missing Values
+## 3. Data Preprocessing
+### 3.1 Handle Missing Values
+- Check for missing values in each column.
 ```python
 # Check for missing values
 print(sdata.isnull().sum())
@@ -369,15 +371,15 @@ print(sdata.isnull().sum())
 
 
 > *It shows that there are no missing values in the dataset.*
-### Encoding Categorical Variables
+### 3.2 Encoding Categorical Variables
+- Converting categorical variables into a format that can be provided to machine learning algorithms.
 ```python
 # Convert categorical variables into a new binary column using one-hot encoding
 sdata_encoded = pd.get_dummies(sdata, drop_first=True)
 ```
-> *Converting categorical variables into a format that can be provided to machine learning algorithms.*
 
-### Outliers
-> *Calculating Z-scores for all columns*
+### 3.3 Outliers
+- Calculating Z-scores for all columns to identify data points that are far from the mean.
 ```python
 # Calculate Z-scores for all columns (numeric and one-hot encoded)
 z_scores = np.abs((sdata_encoded - sdata_encoded.mean()) / sdata_encoded.std())
@@ -660,7 +662,7 @@ z_scores.head(10)
 <p>10 rows × 42 columns</p>
 </div>
 
-### Heatmap of Z-scores to identify outliers
+### 3.3.1 Heatmap of Z-scores to identify outliers
 ```python
 plt.figure(figsize=(12, 8))
 sns.heatmap(z_scores, cmap='coolwarm', cbar_kws={'label': 'Z-Score'})
@@ -670,9 +672,9 @@ plt.ylabel("Data Points", fontsize=12)
 plt.grid(False)
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/fa749839-9c29-493e-acf8-1689d9817c78)
-> *This heatmap visualizes Z-scores for various features to spot rows with potential outliers.*
-### Outliers per column
+![image](https://github.com/user-attachments/assets/a80a018c-7b04-4f62-968b-b872b2b27dd5)
+> *A heatmap of Z-scores was created to visually inspect potential outliers.*
+### 3.3.2 Outliers per column
 ```python
 # Outliers based on Z-score > 3
 outliers = (z_scores > 3).sum()
@@ -724,15 +726,8 @@ print("Outliers per column:\n", outliers)
 | internet_yes         | 0     |
 | romantic_yes         | 0     |
 
-### Removing rows with outliers
-```python
-# Remove rows with outliers
-sdata_clean = sdata[(z_scores < 3).all(axis=1)]
-```
-> *Removing rows with outliers to improve model performance.*
-
-## Model Implementation:
-### Getting the inputs and output
+## 4. Model Implementation
+### 4.1 Getting the inputs and output
 ```python
 # Define your target variable (continuous) and independent variables
 X = sdata_encoded.drop(columns='G3')
@@ -1054,13 +1049,15 @@ y
 | 646   | 9   |
 | 647   | 10  |
 | 648   | 11  |
-### Creating the Training Set and the Test Set
+### 4.2 Creating the Training Set and the Test Set
+- Split the dataset into training (80%) and testing (20%) sets.
 ```python
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 ```
-> *Splitting the data (80% training, 20% testing)*
 
-### Normalize data
+### 4.3 Normalize data
+- Normalize the input features using ```StandardScaler```.
+> *Normalizing the dataset since it has features that have different units and scales.*
 ```python
 scaler = StandardScaler()
 
@@ -1068,94 +1065,91 @@ scaler = StandardScaler()
 X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 ```
-> *Normalizing the dataset since it has features that have different units and scales.*
-
+> *Displaying the **normalized version of the input training dataset** (`X_train`)*
 ```python
 X_train_scaled
 
-array([[ 0.98793212, -0.43741772, -0.25633653, ...,  0.35125009,
-         0.56919205, -0.75993921],
-       [-0.62953403,  1.35013974,  1.59142265, ...,  0.35125009,
-         0.56919205,  1.31589473],
-       [ 0.98793212,  0.45636101, -0.25633653, ...,  0.35125009,
-        -1.75687625, -0.75993921],
+array([[-0.61043136,  0.42368083, -0.27799922, ...,  0.35813527,
+         0.55138018, -0.74111654],
+       [ 0.20820914, -1.32148068, -1.18543063, ..., -2.79224107,
+         0.55138018, -0.74111654],
+       [ 1.02684965,  0.42368083, -0.27799922, ...,  0.35813527,
+         0.55138018,  1.34931545],
        ...,
-       [-0.62953403,  1.35013974,  1.59142265, ...,  0.35125009,
-         0.56919205, -0.75993921],
-       [-1.4382671 , -1.33119645, -1.18021613, ...,  0.35125009,
-         0.56919205, -0.75993921],
-       [-1.4382671 ,  1.35013974,  1.59142265, ...,  0.35125009,
-         0.56919205, -0.75993921]])
+       [-0.61043136,  1.29626158, -0.27799922, ...,  0.35813527,
+         0.55138018,  1.34931545],
+       [ 0.20820914, -1.32148068, -0.27799922, ...,  0.35813527,
+         0.55138018, -0.74111654],
+       [ 1.02684965, -1.32148068, -2.09286204, ...,  0.35813527,
+        -1.81363067, -0.74111654]])
 ```
-> *Displaying the **normalized version of the input training dataset** (`X_train`)*
-
+> *Displaying the **normalized version of the input testing dataset** (`X_test`)*
 ```python
 X_test_scaled
 
-array([[ 0.98793212,  1.35013974,  1.59142265, ...,  0.35125009,
-         0.56919205, -0.75993921],
-       [-0.62953403,  0.45636101, -1.18021613, ...,  0.35125009,
-         0.56919205, -0.75993921],
-       [ 0.98793212,  1.35013974,  1.59142265, ...,  0.35125009,
-         0.56919205, -0.75993921],
+array([[-0.61043136, -0.44889993, -1.18543063, ...,  0.35813527,
+         0.55138018,  1.34931545],
+       [ 0.20820914, -2.19406143, -0.27799922, ...,  0.35813527,
+         0.55138018, -0.74111654],
+       [ 1.02684965,  0.42368083,  1.53686361, ...,  0.35813527,
+         0.55138018, -0.74111654],
        ...,
-       [-0.62953403,  0.45636101,  1.59142265, ...,  0.35125009,
-        -1.75687625, -0.75993921],
-       [ 0.17919904,  1.35013974,  0.66754306, ...,  0.35125009,
-         0.56919205,  1.31589473],
-       [ 0.98793212, -0.43741772, -0.25633653, ...,  0.35125009,
-         0.56919205,  1.31589473]])
+       [ 1.02684965, -0.44889993, -0.27799922, ...,  0.35813527,
+        -1.81363067, -0.74111654],
+       [ 0.20820914, -0.44889993, -0.27799922, ..., -2.79224107,
+        -1.81363067,  1.34931545],
+       [ 1.02684965, -0.44889993, -1.18543063, ...,  0.35813527,
+         0.55138018,  1.34931545]])
 ```
 
-> *Displaying the **normalized version of the input testing dataset** (`X_test`)*
 
+> *Displaying the **output training dataset** (`y_train`)*
 ```python
 y_train
 
-332    18
-29     12
-302    12
-286    13
-554    10
+34     12
+432     7
+399    17
+346    13
+542    12
        ..
-71     10
-106    10
-270    15
-435    10
-102    12
-Name: G3
-```
-> *Displaying the **output training dataset** (`y_train`)*
-
-```python
-y_test
-
-636    19
-220    12
-594    18
-429    11
-72     11
-       ..
-514     7
-374    17
-444    11
-244    12
-601    10
+9      13
+359    17
+192    11
+629     9
+559    13
 Name: G3
 ```
 > *Displaying the **output testing dataset** (`y_test`)*
+```python
+y_test
 
-### Building the Model
+532     8
+375    15
+306    16
+625    10
+480    10
+       ..
+403    15
+266    14
+641    15
+558    10
+242    11
+Name: G3
+```
+
+
+### 4.4 Building the Model
 ```python
 # Initialize the linear regression model
 model = LinearRegression()
 ```
-### Training the Model
+### 4.5 Training the Model
 ```python
 # Train the model on the scaled training data
 model.fit(X_train_scaled, y_train)
 ```
-### Inference
+### 4.6 Inference
 ```python
 # Predict the target values for the test data
 y_pred = model.predict(X_test_scaled)
@@ -1163,91 +1157,89 @@ y_pred
 ```
 > *Displaying the **predicted target values***
 ```python
-array([18.40265613, 11.82720849, 18.56288575, 10.80969554, 11.74323992,
-       16.52050538, 17.68642688,  9.20547185, 10.99263829, 10.52990179,
-       18.68507485, 12.01170944, 12.51636949,  9.25637135, 10.92001471,
-       13.89458333, 11.70284959,  7.75525634, 15.58827334, 14.91646892,
-       15.48017743, 13.6711844 , 14.51763488, 12.14228197, 14.73663429,
-       12.89956801,  8.386953  , 11.70486551, 11.30482308, 15.39946248,
-       15.91856938, 13.007757  ,  7.94478881,  6.55967433, 17.82710293,
-       15.76901234, 14.0460542 , 15.54431689, 13.26315587, 11.43204987,
-       13.88933129, 11.05736646,  8.62073014, 11.85157458, 13.27989252,
-       13.13368834, 17.89357593, 11.39508466, 12.06570598, 11.36425844,
-       11.00499054, 11.16234464, 14.32597736,  9.8592132 , 10.79193041,
-       18.01161782,  9.10909354, 10.35558102, 11.4316307 , 10.04193231,
-        8.21272376, 11.30013557, 16.13851443, 12.36903381, 15.51853105,
-       16.17553342,  9.9042642 ,  7.94076538,  9.50371636,  9.57917018,
-       16.13197401, 15.88862171, 12.14110277, 16.71819814, 13.80215043,
-       13.44212228, 12.85545806, 15.69804212, 12.46102076, 13.45123399,
-       11.78788661, 11.6070244 , 18.07741723,  7.96914521, 12.35474266,
-       18.76647297, 12.20141506,  8.79024424, 15.07839187, 12.5143866 ,
-       15.58803867,  9.12198992, 11.73285092, 19.13536128,  8.87135955,
-       14.71528738, 15.72214431,  9.63844169, 12.83536004,  9.82708007,
-       12.02812807, 11.18463076, 11.55753676, 11.96583788, 12.96584937,
-        9.81076629, 10.8074428 , 11.78069743,  9.02290603, 12.98379529,
-       13.70886845,  8.33139453, 11.66278748, 10.61821796,  5.51091075,
-        9.43945419, 11.10483796, 16.21379308, 15.73812692,  9.07104242,
-       13.87280325,  0.52155643, 15.90638919, 14.38922905, 11.97730024,
-        7.05447789, 18.58542536,  9.41108376, 13.2076544 ,  8.63315957])
+array([ 7.11839166, 15.2987607 , 16.51840561, 10.24362584,  8.88631813,
+       12.40264525, 13.11431362, 18.58431904, 11.539958  , 11.22662697,
+       10.86332591, 10.20475805, 13.46689866,  7.90904354, 18.52875113,
+       12.28220793, 12.90826114, 12.43573679, 10.77504148,  9.94604434,
+       12.10420184,  9.96779407, 17.30494134, 13.18451771, 12.64142506,
+        0.46555942, 12.66670441, 13.46679886, 10.92486941, 12.76209961,
+       14.0807856 , 16.53398922, 13.1430624 , 16.02934565, 12.7784794 ,
+        9.03767647,  8.86226118, 11.36992111, 13.11354283, 11.28744116,
+       15.54975067, 17.87695741, 11.34890768, 13.44009004, 12.35722513,
+        9.19036267, 12.93904672,  8.54235792, 11.2706524 ,  9.28342951,
+        5.31003205, 14.24479115,  8.91115527, 12.2377876 ,  6.6539997 ,
+       11.6800828 , 11.69228473, 11.35474737, 14.51744483, 14.65246459,
+       13.85454817,  6.87732712, 11.52813832,  8.8940211 , 13.15243389,
+       12.35231133, 11.87723093, 12.93668168, 14.85414503,  6.40595837,
+        8.05347897, 11.02559697, 13.93846354, 10.69657169, 14.42980161,
+       13.83815397, 13.99634797, 11.57891697, 13.32203274, 12.13489736,
+       14.52900954,  8.55483733, 10.05701427, 13.5473069 , 18.55515647,
+       11.00386865, 11.04680672, 13.67212462, 12.90097445, 13.26617422,
+       11.28592914, 15.94979713, 18.51247502, 11.89448638,  7.48188078,
+       10.36704683, 13.44249519, 11.6493244 , 13.13071069, 14.47281931,
+       12.470212  ,  9.46829343,  5.31283499, 10.92650604,  9.87709488,
+       11.35712867, 16.90314565, 10.59765663, 10.12583098, 15.52766888,
+       11.43589043, 13.25478   , 14.52004618, 13.4716261 , 11.74147721,
+       10.2534332 , 15.80407921, 16.10581745, 10.53754751, 11.75796434,
+        7.56688346, 10.49256986,  9.48829377, 10.45732009, 13.24003928,
+       15.95107391, 15.20441861, 16.71540397, 11.97115601, 10.51095552])
 ```
 > *Comparing the predicted values to the **output testing dataset** (y_test)*
 ```python
-636    19
-220    12
-594    18
-429    11
-72     11
+532     8
+375    15
+306    16
+625    10
+480    10
        ..
-514     7
-374    17
-444    11
-244    12
-601    10
+403    15
+266    14
+641    15
+558    10
+242    11
 ```
 
-## Evaluating the Model:
-### Mean Squared Error
+## 5. Evaluating the Model:
+### 5.1 Mean Squared Error
 ```python
 # Calculate Mean Squared Error (MSE)
 mse = mean_squared_error(y_test, y_pred)
 print(f"Mean Squared Error (MSE): {mse:.2f}")
 ```
-> *Calculated **Mean Squared Error***
 ```python
-Mean Squared Error (MSE): 1.48
+Mean Squared Error (MSE): 1.02
 ```
-### Mean Absolute Error
+> *The **Mean Squared Error(MSE)** is 1.02, providing insights into the average prediction errors.*
+
+### 5.2 Mean Absolute Error
 ```python
 # Calculate Mean Absolute Error (MAE)
 mae = mean_absolute_error(y_test, y_pred)
 print(f"Mean Absolute Error (MAE): {mae:.2f}")
 ```
-> *Calculated **Mean Absolute Error***
 ```python
-Mean Absolute Error (MAE): 0.77
+Mean Absolute Error (MAE): 0.75
 ```
-
-### R-squared
+> *The **Mean Absolute Error(MAE)** is 0.75, providing insights into the average prediction errors.*
+### 5.3 R-squared
 ```python
 # Calculate R-squared (r2)
 r2 = r2_score(y_test, y_pred)
 print(f"R-squared (R²): {r2:.2f}")
 ```
-> *Calculated **R-squared***
 ```python
-R-squared (R²): 0.85
+R-squared (R²): 0.86
 ```
-## Interpretation:
+> *The model achieved an **R²** score of 0.86, indicating that it explains 86% of the variance in student achievement.*
+
+## 6. Interpretation:
 ```python
 # Coefficients of the model
 coefficients = pd.DataFrame(model.coef_, X.columns, columns=['Coefficient'])
 # Print the coefficients
 coefficients.head(15)
 ```
-> *A positive coefficient means that as the feature increases, the target variable increases.*
-
-> *A negative coefficient means that as the feature increases, the target variable decreases.*
-
+> *A positive coefficient means that as the feature increases, the target variable increases. While a negative coefficient means that as the feature increases, the target variable decreases.*
 <div>
 <table border="1" class="dataframe">
   <thead>
@@ -1259,69 +1251,74 @@ coefficients.head(15)
   <tbody>
     <tr>
       <th>age</th>
-      <td>0.007372</td>
+      <td>0.011230</td>
     </tr>
     <tr>
       <th>Medu</th>
-      <td>-0.166254</td>
+      <td>-0.130062</td>
     </tr>
     <tr>
       <th>Fedu</th>
-      <td>0.041540</td>
+      <td>0.031043</td>
     </tr>
     <tr>
       <th>traveltime</th>
-      <td>0.083662</td>
+      <td>0.109396</td>
     </tr>
     <tr>
       <th>studytime</th>
-      <td>0.050082</td>
+      <td>0.039781</td>
     </tr>
     <tr>
       <th>failures</th>
-      <td>-0.124303</td>
+      <td>-0.175474</td>
     </tr>
     <tr>
       <th>famrel</th>
-      <td>-0.040140</td>
+      <td>-0.039511</td>
     </tr>
     <tr>
       <th>freetime</th>
-      <td>-0.113908</td>
+      <td>-0.046087</td>
     </tr>
     <tr>
       <th>goout</th>
-      <td>0.020842</td>
+      <td>-0.015311</td>
     </tr>
     <tr>
       <th>Dalc</th>
-      <td>-0.067851</td>
+      <td>-0.016356</td>
     </tr>
     <tr>
       <th>Walc</th>
-      <td>0.035156</td>
+      <td>-0.055358</td>
     </tr>
     <tr>
       <th>health</th>
-      <td>-0.079442</td>
+      <td>-0.062430</td>
     </tr>
     <tr>
       <th>absences</th>
-      <td>0.053971</td>
+      <td>0.072488</td>
     </tr>
     <tr>
       <th>G1</th>
-      <td>0.460262</td>
+      <td>0.351990</td>
     </tr>
     <tr>
       <th>G2</th>
-      <td>2.471735</td>
+      <td>2.662384</td>
     </tr>
   </tbody>
 </table>
 </div>
 
-##  Comparison of the actual vs. predicted values from the machine learning model.
+
+> *Features with the highest absolute coefficients, such as G1 and G2, appear to have the most significant influence on the target variable.*
+
+
+###  6.1 Comparison of the actual vs. predicted values from the machine learning model.
+- The scatter plot indicates that most predictions lie close to the ideal line, suggesting reasonable predictive accuracy.
 ```python
 # Create the scatter plot
 plt.figure(figsize=(8, 6))
@@ -1331,7 +1328,7 @@ plt.scatter(y_test, y_pred, alpha=0.6, color='blue', edgecolors='black', s=70)  
 min_val = min(min(y_test), min(y_pred))
 max_val = max(max(y_test), max(y_pred))
 plt.plot([min_val, max_val], [min_val, max_val], color='red', linestyle='--', linewidth=2, label='Perfect Prediction')
-
+plt.fill_between([min_val, max_val], [min_val - 2, max_val - 2], [min_val + 2, max_val + 2], color='gray', alpha=0.2)
 # Set labels and title
 plt.xlabel('Actual Values', fontsize=12)
 plt.ylabel('Predicted Values', fontsize=12)
@@ -1343,10 +1340,12 @@ plt.legend()
 
 # Show the plot
 plt.show()
+
 ```
 > *The plot presents the evaluation of the performance of a regression model by showing how closely the model's predictions align with the true (actual) values.*
 
-![image](https://github.com/user-attachments/assets/c9437e6c-4205-4a47-a896-d7daf151d043)
+![image](https://github.com/user-attachments/assets/062fdf53-9361-4ba0-a91e-517fd26814c4)
+
 
 Logistic Regression - HEART DISEASE DATASET
 
@@ -1419,13 +1418,4 @@ Positively correlated with age (0.302), exang (0.125), and oldpeak (0.237), indi
 -thal:
 
 Positively correlated with sex (0.211), indicating a gender difference in thalassemia. Negatively correlated with target (-0.343), indicating that certain thalassemia conditions are associated with a lower likelihood of heart disease.
-
-
-
-
-
-
-
-
-
 
