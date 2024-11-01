@@ -2121,3 +2121,6 @@ This analysis of students' performance using linear regression and prediction of
 - Harrell, F. E. (2015). Regression modeling strategies: With applications to linear models, logistic and ordinal regression, and survival analysis. Springer. https://doi.org/10.1007/978-3-319-19425-7
 - Kanade, V. (2022, June 10). Linear vs. Logistic Regression - Spiceworks Inc. Spiceworks Inc. https://www.spiceworks.com/tech/artificial-intelligence/articles/linear-regression-vs-logistic-regression/
 - GeeksforGeeks. (2024, March 21). One hot encoding in machine learning. GeeksforGeeks. https://www.geeksforgeeks.org/ml-one-hot-encoding/
+- Student Performance Data set. (2020, March 27). Kaggle. https://www.kaggle.com/datasets/larsen0966/student-performance-data-set
+- Heart disease dataset. (2019, June 6). Kaggle. https://www.kaggle.com/datasets/johnsmith88/heart-disease-dataset
+- Warudkar, H. (2024, August 19). How to Find Outliers in Data using Machine Learning. Express Analytics. https://www.expressanalytics.com/blog/outliers-machine-learning/#:~:text=An%20outlier%20is%20a%20data,considered%20when%20collecting%20the%20data.
