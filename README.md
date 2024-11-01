@@ -1348,3 +1348,84 @@ plt.show()
 
 ![image](https://github.com/user-attachments/assets/c9437e6c-4205-4a47-a896-d7daf151d043)
 
+Logistic Regression - HEART DISEASE DATASET
+
+Importing Libraries and Dataset
+The analysis began by importing the necessary libraries, with pandas being the primary library used for data manipulation. We loaded the dataset into a DataFrame using the pd.read_csv() function, which allows us to read data from a CSV file easily. This step is essential as it provides the foundation for further analysis.
+![image](https://github.com/user-attachments/assets/1e9d521b-f5e9-4a87-a9cf-961c6c985a8b)
+
+Overview of the Dataset
+To understand the structure of the dataset, we used the dataset.info() method. This command provides a summary of the dataset, including the number of entries (rows), the types of data in each column, and any potential issues. This overview is vital for identifying what kind of preprocessing steps might be necessary.
+![image](https://github.com/user-attachments/assets/28a5d7cc-6cbd-410f-bd58-3e6880cc9c98)
+
+Handling Missing Values
+To ensure the integrity of our dataset, we checked for any missing values using dataset.isna().sum(). This method shows the total number of missing values for each column. If any missing values were present, we would need to decide how to handle them (e.g., by filling them in with the mean or median of the column, or removing the affected rows). In our case, we confirmed there were no missing values, which simplified our preprocessing steps.
+![image](https://github.com/user-attachments/assets/43e4e830-d3a6-4066-9537-ff9a345a43ae)
+
+Separating Features and Target
+After ensuring the data was clean, we separated the independent variables (features) from the dependent variable (target). The features, stored in X, consisted of all columns except the last one, while the target variable, stored in y, contained only the last column. This separation is crucial as it allows the model to learn from the features in order to predict the target.
+![image](https://github.com/user-attachments/assets/f175e2ad-05df-4369-8210-830199560e04)
+
+Train-Test Split
+To evaluate the performance of our model accurately, we divided the dataset into two parts: training and testing. We used train_test_split to create these sets, with an 80-20 split, meaning 80% of the data was used for training the model, and 20% was reserved for testing it. This separation is important because it allows us to train the model on one set of data and then evaluate its performance on a different, unseen set.
+![image](https://github.com/user-attachments/assets/06d771ed-7269-48b6-946f-8a32a2e7efa9)
+
+Feature Scaling
+To ensure that all features contribute equally to the model's predictions, we standardized the features using StandardScaler. This process adjusts the features so they have a mean of 0 and a standard deviation of 1. Feature scaling is particularly important for algorithms like logistic regression, as it can improve the model’s performance and convergence speed.
+![image](https://github.com/user-attachments/assets/28083f26-62a0-4591-adae-4a130d186f1f)
+
+Building and Training the Model
+After preprocessing the data, we moved on to building and training the model.
+
+Logistic Regression
+We chose logistic regression as our classification algorithm because it is a widely used method for binary classification problems. We initialized the logistic regression model and trained it using the training dataset. During this training process, the model learned the relationships between the features and the target variable, allowing it to make predictions based on the input data.
+![image](https://github.com/user-attachments/assets/edc3c966-c760-40de-87dc-0544f9ade71e)
+
+Making Predictions
+Once the model was trained, we used it to make predictions on the test set. This step is crucial for assessing how well our model generalizes to new data. We also demonstrated how to predict the outcome for a single data point to illustrate the model's practical application.
+![image](https://github.com/user-attachments/assets/17a5865e-6db6-4350-9de5-bdda4d15eb66)
+These correlations provide insights into which factors are most influential in predicting heart disease and can guide the development of predictive models
+
+-age:
+
+Positively correlated with trestbps (0.283), chol (0.207), and ca (0.302), indicating that older age is associated with higher resting blood pressure, higher cholesterol, and more major vessels colored by fluoroscopy. Negatively correlated with thalach (-0.395), indicating that older age is associated with lower maximum heart rate achieved. Negatively correlated with target (-0.221), indicating that older age is associated with a lower likelihood of having heart disease (though this might be counterintuitive and could indicate a complex relationship or influence of other factors).
+
+-sex:
+
+Negatively correlated with chol (-0.196) and target (-0.284), indicating that females are less likely to have higher cholesterol and heart disease compared to males. cp (chest pain type):
+
+Positively correlated with thalach (0.293) and target (0.432), indicating that certain types of chest pain are associated with higher maximum heart rate achieved and a higher likelihood of heart disease. Negatively correlated with exang (-0.393), indicating that certain types of chest pain are less likely to be associated with exercise-induced angina.
+
+-trestbps:
+
+Positively correlated with oldpeak (0.195), indicating higher resting blood pressure is associated with higher ST depression induced by exercise. Negatively correlated with target (-0.146), indicating higher resting blood pressure is associated with a lower likelihood of heart disease (again, this could indicate a complex relationship or the influence of other factors).
+
+-thalach:
+
+Positively correlated with cp (0.293) and target (0.420), indicating higher maximum heart rate achieved is associated with certain types of chest pain and a higher likelihood of heart disease. Negatively correlated with age (-0.395), exang (-0.377), and oldpeak (-0.342), indicating that lower maximum heart rate achieved is associated with older age, exercise-induced angina, and higher ST depression induced by exercise.
+
+-exang:
+
+Positively correlated with oldpeak (0.287), indicating that exercise-induced angina is associated with higher ST depression induced by exercise. Negatively correlated with cp (-0.393), thalach (-0.377), and target (-0.436), indicating that exercise-induced angina is associated with certain types of chest pain, lower maximum heart rate achieved, and a lower likelihood of heart disease.
+
+-oldpeak:
+
+Positively correlated with exang (0.287) and ca (0.237), indicating higher ST depression induced by exercise is associated with exercise-induced angina and more major vessels colored by fluoroscopy. Negatively correlated with thalach (-0.342), slope (-0.576), and target (-0.429), indicating that higher ST depression induced by exercise is associated with lower maximum heart rate achieved, less favorable slope of the peak exercise ST segment, and a lower likelihood of heart disease.
+
+-ca:
+
+Positively correlated with age (0.302), exang (0.125), and oldpeak (0.237), indicating more major vessels colored by fluoroscopy are associated with older age, exercise-induced angina, and higher ST depression induced by exercise. Negatively correlated with thalach (-0.228) and target (-0.409), indicating that more major vessels colored by fluoroscopy are associated with lower maximum heart rate achieved and a lower likelihood of heart disease.
+
+-thal:
+
+Positively correlated with sex (0.211), indicating a gender difference in thalassemia. Negatively correlated with target (-0.343), indicating that certain thalassemia conditions are associated with a lower likelihood of heart disease.
+
+
+
+
+
+
+
+
+
+
