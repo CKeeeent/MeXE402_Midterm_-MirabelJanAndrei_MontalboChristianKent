@@ -672,7 +672,7 @@ plt.ylabel("Data Points", fontsize=12)
 plt.grid(False)
 plt.show()
 ```
-![image](https://github.com/user-attachments/assets/a80a018c-7b04-4f62-968b-b872b2b27dd5)
+![image](https://github.com/user-attachments/assets/fa749839-9c29-493e-acf8-1689d9817c78)
 > *A heatmap of Z-scores was created to visually inspect potential outliers.*
 ### 3.3.2 Outliers per column
 ```python
@@ -1344,46 +1344,565 @@ plt.show()
 ```
 > *The plot presents the evaluation of the performance of a regression model by showing how closely the model's predictions align with the true (actual) values.*
 
-![image](https://github.com/user-attachments/assets/062fdf53-9361-4ba0-a91e-517fd26814c4)
+![output](https://github.com/user-attachments/assets/9a3a364e-7c46-4f8b-9067-d0cc5f722303)
 
 
-Logistic Regression - HEART DISEASE DATASET
+# Logistic Regression Analysis: *Hear Disease Dataset.*
+## 1. Importing Libraries and Dataset
+- The analysis began by importing the necessary libraries, with pandas being the primary library used for data manipulation. We loaded the dataset into a DataFrame using the pd.read_csv() function, which allows us to read data from a CSV file easily. This step is essential as it provides the foundation for further analysis.
+```python
+import pandas as pd
+import seaborn as sns
+import numpy as np
 
-Importing Libraries and Dataset
-The analysis began by importing the necessary libraries, with pandas being the primary library used for data manipulation. We loaded the dataset into a DataFrame using the pd.read_csv() function, which allows us to read data from a CSV file easily. This step is essential as it provides the foundation for further analysis.
-![image](https://github.com/user-attachments/assets/1e9d521b-f5e9-4a87-a9cf-961c6c985a8b)
+import warnings
+warnings.filterwarnings('ignore')
 
-Overview of the Dataset
-To understand the structure of the dataset, we used the dataset.info() method. This command provides a summary of the dataset, including the number of entries (rows), the types of data in each column, and any potential issues. This overview is vital for identifying what kind of preprocessing steps might be necessary.
-![image](https://github.com/user-attachments/assets/28a5d7cc-6cbd-410f-bd58-3e6880cc9c98)
+# Importing the dataset
+data =pd.read_csv("heart.csv")
 
-Handling Missing Values
-To ensure the integrity of our dataset, we checked for any missing values using dataset.isna().sum(). This method shows the total number of missing values for each column. If any missing values were present, we would need to decide how to handle them (e.g., by filling them in with the mean or median of the column, or removing the affected rows). In our case, we confirmed there were no missing values, which simplified our preprocessing steps.
-![image](https://github.com/user-attachments/assets/43e4e830-d3a6-4066-9537-ff9a345a43ae)
+```
 
-Separating Features and Target
-After ensuring the data was clean, we separated the independent variables (features) from the dependent variable (target). The features, stored in X, consisted of all columns except the last one, while the target variable, stored in y, contained only the last column. This separation is crucial as it allows the model to learn from the features in order to predict the target.
-![image](https://github.com/user-attachments/assets/f175e2ad-05df-4369-8210-830199560e04)
 
-Train-Test Split
-To evaluate the performance of our model accurately, we divided the dataset into two parts: training and testing. We used train_test_split to create these sets, with an 80-20 split, meaning 80% of the data was used for training the model, and 20% was reserved for testing it. This separation is important because it allows us to train the model on one set of data and then evaluate its performance on a different, unseen set.
-![image](https://github.com/user-attachments/assets/06d771ed-7269-48b6-946f-8a32a2e7efa9)
+### 1.1 Overview of the Dataset
+- To understand the structure of the dataset, we used the dataset.info() method. This command provides a summary of the dataset, including the number of entries (rows), the types of data in each column, and any potential issues. This overview is vital for identifying what kind of preprocessing steps might be necessary.
+```python
+data.head()
+```
 
-Feature Scaling
-To ensure that all features contribute equally to the model's predictions, we standardized the features using StandardScaler. This process adjusts the features so they have a mean of 0 and a standard deviation of 1. Feature scaling is particularly important for algorithms like logistic regression, as it can improve the model’s performance and convergence speed.
-![image](https://github.com/user-attachments/assets/28083f26-62a0-4591-adae-4a130d186f1f)
+> *Displaying the first few rows of the dataset.*
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>cp</th>
+      <th>trestbps</th>
+      <th>chol</th>
+      <th>fbs</th>
+      <th>restecg</th>
+      <th>thalach</th>
+      <th>exang</th>
+      <th>oldpeak</th>
+      <th>slope</th>
+      <th>ca</th>
+      <th>thal</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>52</td>
+      <td>1</td>
+      <td>0</td>
+      <td>125</td>
+      <td>212</td>
+      <td>0</td>
+      <td>1</td>
+      <td>168</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>53</td>
+      <td>1</td>
+      <td>0</td>
+      <td>140</td>
+      <td>203</td>
+      <td>1</td>
+      <td>0</td>
+      <td>155</td>
+      <td>1</td>
+      <td>3.1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>70</td>
+      <td>1</td>
+      <td>0</td>
+      <td>145</td>
+      <td>174</td>
+      <td>0</td>
+      <td>1</td>
+      <td>125</td>
+      <td>1</td>
+      <td>2.6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>61</td>
+      <td>1</td>
+      <td>0</td>
+      <td>148</td>
+      <td>203</td>
+      <td>0</td>
+      <td>1</td>
+      <td>161</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>62</td>
+      <td>0</td>
+      <td>0</td>
+      <td>138</td>
+      <td>294</td>
+      <td>1</td>
+      <td>1</td>
+      <td>106</td>
+      <td>0</td>
+      <td>1.9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-Building and Training the Model
-After preprocessing the data, we moved on to building and training the model.
+```python
+data.tail()
+```
+> *Displaying the last few rows of the dataset.*
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>cp</th>
+      <th>trestbps</th>
+      <th>chol</th>
+      <th>fbs</th>
+      <th>restecg</th>
+      <th>thalach</th>
+      <th>exang</th>
+      <th>oldpeak</th>
+      <th>slope</th>
+      <th>ca</th>
+      <th>thal</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1020</th>
+      <td>59</td>
+      <td>1</td>
+      <td>1</td>
+      <td>140</td>
+      <td>221</td>
+      <td>0</td>
+      <td>1</td>
+      <td>164</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1021</th>
+      <td>60</td>
+      <td>1</td>
+      <td>0</td>
+      <td>125</td>
+      <td>258</td>
+      <td>0</td>
+      <td>0</td>
+      <td>141</td>
+      <td>1</td>
+      <td>2.8</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1022</th>
+      <td>47</td>
+      <td>1</td>
+      <td>0</td>
+      <td>110</td>
+      <td>275</td>
+      <td>0</td>
+      <td>0</td>
+      <td>118</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1023</th>
+      <td>50</td>
+      <td>0</td>
+      <td>0</td>
+      <td>110</td>
+      <td>254</td>
+      <td>0</td>
+      <td>0</td>
+      <td>159</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1024</th>
+      <td>54</td>
+      <td>1</td>
+      <td>0</td>
+      <td>120</td>
+      <td>188</td>
+      <td>0</td>
+      <td>1</td>
+      <td>113</td>
+      <td>0</td>
+      <td>1.4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
 
-Logistic Regression
-We chose logistic regression as our classification algorithm because it is a widely used method for binary classification problems. We initialized the logistic regression model and trained it using the training dataset. During this training process, the model learned the relationships between the features and the target variable, allowing it to make predictions based on the input data.
+> *Displaying the number of rows and columns in the dataset.*
+```python
+print("Numder of Rows",data.shape[0])
+print("Numder of Columns",data.shape[1])
+```
+```python
+Numder of Rows 1025
+Numder of Columns 14
+```
+- Data Visualization
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+data.columns
+
+sns.distplot(data['age'])
+plt.show()
+```
+> *This plot show age Distribution in the Dataset and It has been shown that the highest percentage of people suffering from heart disease are those between the ages of 50 and 60 years.*
+![image](https://github.com/user-attachments/assets/3a96edd6-38a3-4466-a657-775d7316889e)
+
+
+
+
+
+## 2. Handling Missing Values
+- To ensure the integrity of our dataset, we checked for any missing values using dataset.isna().sum(). This method shows the total number of missing values for each column. If any missing values were present, we would need to decide how to handle them (e.g., by filling them in with the mean or median of the column, or removing the affected rows). In our case, we confirmed there were no missing values, which simplified our preprocessing steps.
+```python
+data.isnull().sum()
+```
+> *Checking for missing values.*
+
+
+| Column   | Missing Values |
+|----------|----------------|
+| age      | 0              |
+| sex      | 0              |
+| cp       | 0              |
+| trestbps | 0              |
+| chol     | 0              |
+| fbs      | 0              |
+| restecg  | 0              |
+| thalach  | 0              |
+| exang    | 0              |
+| oldpeak  | 0              |
+| slope    | 0              |
+| ca       | 0              |
+| thal     | 0              |
+| target   | 0              |
+
+
+
+## 3. Separating Features and Target
+- After ensuring the data was clean, we separated the independent variables (features) from the dependent variable (target). The features, stored in X, consisted of all columns except the last one, while the target variable, stored in y, contained only the last column. This separation is crucial as it allows the model to learn from the features in order to predict the target.
+```python
+X = data.drop(columns = 'target', axis = 1)
+y = data['target']
+X
+y
+```
+> *Displaying the inputs ```X```.*
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>sex</th>
+      <th>cp</th>
+      <th>trestbps</th>
+      <th>chol</th>
+      <th>fbs</th>
+      <th>restecg</th>
+      <th>thalach</th>
+      <th>exang</th>
+      <th>oldpeak</th>
+      <th>slope</th>
+      <th>ca</th>
+      <th>thal</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>52</td>
+      <td>1</td>
+      <td>0</td>
+      <td>125</td>
+      <td>212</td>
+      <td>0</td>
+      <td>1</td>
+      <td>168</td>
+      <td>0</td>
+      <td>1.0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>53</td>
+      <td>1</td>
+      <td>0</td>
+      <td>140</td>
+      <td>203</td>
+      <td>1</td>
+      <td>0</td>
+      <td>155</td>
+      <td>1</td>
+      <td>3.1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>70</td>
+      <td>1</td>
+      <td>0</td>
+      <td>145</td>
+      <td>174</td>
+      <td>0</td>
+      <td>1</td>
+      <td>125</td>
+      <td>1</td>
+      <td>2.6</td>
+      <td>0</td>
+      <td>0</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>61</td>
+      <td>1</td>
+      <td>0</td>
+      <td>148</td>
+      <td>203</td>
+      <td>0</td>
+      <td>1</td>
+      <td>161</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>62</td>
+      <td>0</td>
+      <td>0</td>
+      <td>138</td>
+      <td>294</td>
+      <td>1</td>
+      <td>1</td>
+      <td>106</td>
+      <td>0</td>
+      <td>1.9</td>
+      <td>1</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>1020</th>
+      <td>59</td>
+      <td>1</td>
+      <td>1</td>
+      <td>140</td>
+      <td>221</td>
+      <td>0</td>
+      <td>1</td>
+      <td>164</td>
+      <td>1</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1021</th>
+      <td>60</td>
+      <td>1</td>
+      <td>0</td>
+      <td>125</td>
+      <td>258</td>
+      <td>0</td>
+      <td>0</td>
+      <td>141</td>
+      <td>1</td>
+      <td>2.8</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1022</th>
+      <td>47</td>
+      <td>1</td>
+      <td>0</td>
+      <td>110</td>
+      <td>275</td>
+      <td>0</td>
+      <td>0</td>
+      <td>118</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1023</th>
+      <td>50</td>
+      <td>0</td>
+      <td>0</td>
+      <td>110</td>
+      <td>254</td>
+      <td>0</td>
+      <td>0</td>
+      <td>159</td>
+      <td>0</td>
+      <td>0.0</td>
+      <td>2</td>
+      <td>0</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>1024</th>
+      <td>54</td>
+      <td>1</td>
+      <td>0</td>
+      <td>120</td>
+      <td>188</td>
+      <td>0</td>
+      <td>1</td>
+      <td>113</td>
+      <td>0</td>
+      <td>1.4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+<p>1025 rows × 13 columns</p>
+</div>
+
+> *Displaying the output ```y```.*
+
+| Value | Count |
+|-------|-------|
+| 0     | 0     |
+| 1     | 1     |
+| 2     | 0     |
+| 3     | 0     |
+| 4     | 0     |
+| ...   | ...   |
+| 1020  | 1     |
+| 1021  | 0     |
+| 1022  | 0     |
+| 1023  | 1     |
+| 1024  | 0     |
+
+
+
+## 4. Train-Test Split
+- To evaluate the performance of our model accurately, we divided the dataset into two parts: training and testing. We used train_test_split to create these sets, with an 80-20 split, meaning 80% of the data was used for training the model, and 20% was reserved for testing it. This separation is important because it allows us to train the model on one set of data and then evaluate its performance on a different, unseen set.
+```python
+from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(X, y, test_size = 0.2, stratify = y,random_state = 2)
+```
+## 5. Feature Scaling
+- To ensure that all features contribute equally to the model's predictions, we standardized the features using StandardScaler. This process adjusts the features so they have a mean of 0 and a standard deviation of 1. Feature scaling is particularly important for algorithms like logistic regression, as it can improve the model’s performance and convergence speed.
+```python
+#Data standardisation
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+scaler.fit(X)
+X = scaler.transform(X)
+```
+
+## 6. Building and Training the Model
+- After preprocessing the data, we moved on to building and training the model.
+
 ![image](https://github.com/user-attachments/assets/edc3c966-c760-40de-87dc-0544f9ade71e)
 
-Making Predictions
-Once the model was trained, we used it to make predictions on the test set. This step is crucial for assessing how well our model generalizes to new data. We also demonstrated how to predict the outcome for a single data point to illustrate the model's practical application.
+## 7. Making Predictions
+- Once the model was trained, we used it to make predictions on the test set. This step is crucial for assessing how well our model generalizes to new data. We also demonstrated how to predict the outcome for a single data point to illustrate the model's practical application.
 ![image](https://github.com/user-attachments/assets/17a5865e-6db6-4350-9de5-bdda4d15eb66)
-These correlations provide insights into which factors are most influential in predicting heart disease and can guide the development of predictive models
+> *These correlations provide insights into which factors are most influential in predicting heart disease and can guide the development of predictive models.*
 
 -age:
 
