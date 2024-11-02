@@ -2110,7 +2110,7 @@ This analysis of students' performance using linear regression and prediction of
 - Feature Selection: The models are highly dependent on the selected features, which might miss some important variables. For example, other factors such as psychological aspects in student performance or additional health metrics in heart disease might improve the predictive accuracy.
 
 ## Conclusion
- <div align="justify"> &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; Both linear and logistic regression analysis are useful but for different purposes. The linear model is very good at selecting predictors of academic success while logistic regression is important for heart disease risk assessment. Knowing the strengths and limitations of each approach may point the way for future work, possibly incorporating sophisticated modeling techniques and expanding feature sets to improve predictive power and applicability in the real world. </div>
+ <div align="justify"> &nbsp; &nbsp;&nbsp; &nbsp; Both linear and logistic regression analysis are useful but for different purposes. The linear model is very good at selecting predictors of academic success while logistic regression is important for heart disease risk assessment. Knowing the strengths and limitations of each approach may point the way for future work, possibly incorporating sophisticated modeling techniques and expanding feature sets to improve predictive power and applicability in the real world. </div>
 
 # References
 - Almarode, J., & Vandas, K. (2018). Clarity for learning: Five essential practices that empower students and teachers. Corwin Press.
