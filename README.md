@@ -1393,7 +1393,7 @@ plt.show()
 
 
 
-# Logistic Regression Analysis: *Hear Disease Dataset.*
+# Logistic Regression Analysis: *Heart Disease Dataset.*
 ## 1. Importing Libraries and Dataset
 - The analysis began by importing the necessary libraries, with pandas being the primary library used for data manipulation. We loaded the dataset into a DataFrame using the pd.read_csv() function, which allows us to read data from a CSV file easily. This step is essential as it provides the foundation for further analysis.
 ```python
